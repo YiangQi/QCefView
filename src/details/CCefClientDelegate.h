@@ -256,4 +256,12 @@ public:
   virtual void onVirtualKeyboardRequested(CefRefPtr<CefBrowser>& browser,
                                           CefRenderHandler::TextInputMode input_mode) override;
 #pragma endregion
+
+#pragma region CefRequestHandler
+  virtual bool OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
+                              CefRefPtr<CefFrame> frame,
+                              CefRefPtr<CefRequest> request,
+                              bool user_gesture,
+                              bool is_redirect) override;
+#pragma endregion
 };

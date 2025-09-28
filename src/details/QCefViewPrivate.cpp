@@ -704,6 +704,28 @@ QCefViewPrivate::onFileDialog(CefBrowserHost::FileDialogMode mode,
   }
 }
 
+void
+QCefViewPrivate::OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
+                                CefRefPtr<CefFrame> frame,
+                                CefRefPtr<CefRequest> request,
+                                bool user_gesture,
+                                bool is_redirect)
+{
+  if (proxyAddress_.length() > 0)
+  {
+    CefRefPtr<CefRequestContext> context = browser->GetHost()->GetRequestContext();
+    CefRefPtr<CefDictionaryValue> prefs = CefDictionaryValue::Create();
+    prefs->SetString("mode", "fixed_servers");
+    prefs->SetString("server", proxyAddress_);
+
+    CefRefPtr<CefValue> prefsValue = CefValue::Create();
+    prefsValue->SetDictionary(prefs);
+
+    CefString error;
+    context->SetPreference("proxy", prefsValue, error);
+  }
+}
+
 bool
 QCefViewPrivate::hasDevTools()
 {
@@ -1395,4 +1417,10 @@ QCefViewPrivate::setPreference(const QString& name, const QVariant& value, const
   }
 
   return false;
+}
+
+void
+QCefViewPrivate::setProxyAddress(const QString& address)
+{
+  proxyAddress_ = address.toStdString();
 }

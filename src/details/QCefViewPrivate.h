@@ -126,6 +126,11 @@ public:
   /// </summary>
   CefString lastUrl_;
 
+  /// <summary>
+  /// The proxy address.
+  /// </summary>
+  CefString proxyAddress_;
+
 #if defined(QT_DEBUG)
   QElapsedTimer paintTimer_;
 #endif
@@ -221,6 +226,12 @@ protected:
 #endif
                     CefRefPtr<CefFileDialogCallback> callback);
 
+  void OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
+                      CefRefPtr<CefFrame> frame,
+                      CefRefPtr<CefRequest> request,
+                      bool user_gesture,
+                      bool is_redirect);
+
   bool hasDevTools();
 
   void showDevTools();
@@ -289,4 +300,6 @@ public:
   bool sendEventNotifyMessage(const QCefFrameId& frameId, const QString& name, const QVariantList& args);
 
   bool setPreference(const QString& name, const QVariant& value, const QString& error);
+
+  void setProxyAddress(const QString& address);
 };

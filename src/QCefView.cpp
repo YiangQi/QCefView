@@ -283,6 +283,14 @@ QCefView::isDragAndDropEnabled() const
 }
 
 void
+QCefView::setProxyAddress(const QString& address)
+{
+  Q_D(QCefView);
+
+  d->setProxyAddress(address);
+}
+
+void
 QCefView::setFocus(Qt::FocusReason reason)
 {
   Q_D(QCefView);

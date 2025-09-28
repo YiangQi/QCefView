@@ -1,4 +1,4 @@
-/*
+﻿/*
  * File: QCefView.h
  * Project: QCefView
  * Created: 29th March 2016
@@ -293,6 +293,12 @@ public:
   /// </summary>
   /// <returns>True to enable; otherwise false</returns>
   bool isDragAndDropEnabled() const;
+
+  /// <summary>
+  /// Set the proxy address
+  /// </summary>
+  /// <param name="address"></param>
+  void setProxyAddress(const QString &address);
 
 signals:
   /// <summary>
