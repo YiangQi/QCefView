@@ -175,13 +175,14 @@ QCefViewPrivate::createCefBrowser(QCefView* view, const QString& url, const QCef
 #endif
   }
 
+   CefRequestContextSettings settings;
   // 5. create browser object
   bool success = CefBrowserHost::CreateBrowser(windowInfo,        // window info
                                                pClient,           // handler
                                                url.toStdString(), // url
                                                browserSettings,   // settings
                                                nullptr,
-                                               CefRequestContext::GetGlobalContext());
+                                               CefRequestContext::CreateContext(settings, nullptr));
   Q_ASSERT_X(success, "QCefViewPrivate::createBrowser", "Failed to create cef browser");
   if (!success) {
     qWarning() << "Failed to create cef browser";
@@ -711,19 +712,25 @@ QCefViewPrivate::OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
                                 bool user_gesture,
                                 bool is_redirect)
 {
+  Q_Q(QCefView);
   if (proxyAddress_.length() > 0)
   {
     CefRefPtr<CefRequestContext> context = browser->GetHost()->GetRequestContext();
+    bool isOk = context->CanSetPreference("proxy");
     CefRefPtr<CefDictionaryValue> prefs = CefDictionaryValue::Create();
     prefs->SetString("mode", "fixed_servers");
     prefs->SetString("server", proxyAddress_);
-
+    
     CefRefPtr<CefValue> prefsValue = CefValue::Create();
     prefsValue->SetDictionary(prefs);
-
     CefString error;
     context->SetPreference("proxy", prefsValue, error);
   }
+  emit q->beforeBrowse(
+      browser->GetIdentifier(),
+      ValueConvertor::FrameIdC2Q(frame->GetIdentifier()),
+      frame->IsMain(),
+      is_redirect);
 }
 
 bool
@@ -1422,5 +1429,5 @@ QCefViewPrivate::setPreference(const QString& name, const QVariant& value, const
 void
 QCefViewPrivate::setProxyAddress(const QString& address)
 {
-  proxyAddress_ = address.toStdString();
+  proxyAddress_.FromString(address.toStdString());
 }

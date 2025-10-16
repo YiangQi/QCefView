@@ -302,6 +302,14 @@ public:
 
 signals:
   /// <summary>
+  /// Gets called before browse
+  /// </summary>
+  /// <param name="browserId">Indicates the browser id</param>
+  /// <param name="frameId">Indicates the frame id</param>
+  /// <param name="isMainFrame">Indicates the whether this is the main frame</param>
+  /// <param name="is_redirect">Indicates whether is redirect</param>
+  void beforeBrowse(const QCefBrowserId& browserId, const QCefFrameId& frameId, bool isMainFrame, bool is_redirect);
+  /// <summary>
   /// Gets called on loading state changed
   /// </summary>
   /// <param name="browserId">Indicates the browser id</param>
