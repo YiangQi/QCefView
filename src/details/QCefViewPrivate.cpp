@@ -175,7 +175,10 @@ QCefViewPrivate::createCefBrowser(QCefView* view, const QString& url, const QCef
 #endif
   }
 
-   CefRequestContextSettings settings;
+  CefRefPtr<CefRequestContext> ctx = CefRequestContext::GetGlobalContext();
+
+  CefRequestContextSettings settings;
+  CefString(&settings.cache_path).FromString(ctx->GetCachePath());
   // 5. create browser object
   bool success = CefBrowserHost::CreateBrowser(windowInfo,        // window info
                                                pClient,           // handler
