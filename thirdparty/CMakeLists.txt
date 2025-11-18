@@ -36,7 +36,7 @@ FetchContent_Declare(
 # set(CEF_SDK_VERSION "106.1.1+g5891c70+chromium-106.0.5249.119")   # GOOD
 # set(CEF_SDK_VERSION "107.1.12+g65b79a6+chromium-107.0.5304.122")  # GOOD
 # set(CEF_SDK_VERSION "108.4.13+ga98cd4c+chromium-108.0.5359.125")  # GOOD
-set(CEF_SDK_VERSION "109.1.18+gf1c41e4+chromium-109.0.5414.120")  # GOOD
+# set(CEF_SDK_VERSION "109.1.18+gf1c41e4+chromium-109.0.5414.120")  # GOOD
 # set(CEF_SDK_VERSION "110.0.32+g291f1df+chromium-110.0.5481.180")  # GOOD
 # set(CEF_SDK_VERSION "111.2.7+gebf5d6a+chromium-111.0.5563.148")   # GOOD
 # set(CEF_SDK_VERSION "112.3.0+gb09c4ca+chromium-112.0.5615.165")   # GOOD
@@ -44,7 +44,7 @@ set(CEF_SDK_VERSION "109.1.18+gf1c41e4+chromium-109.0.5414.120")  # GOOD
 # set(CEF_SDK_VERSION "119.4.7+g55e15c8+chromium-119.0.6045.199")   # GOOD
 # set(CEF_SDK_VERSION "120.1.6+gf08b1fd+chromium-120.0.6099.71")    # GOOD
 # set(CEF_SDK_VERSION "121.3.15+g4d3b0b4+chromium-121.0.6167.184")  # GOOD
-# set(CEF_SDK_VERSION "122.1.13+gde5b724+chromium-122.0.6261.130")  # GOOD
+set(CEF_SDK_VERSION "122.1.13+gde5b724+chromium-122.0.6261.130")  # GOOD
 # set(CEF_SDK_VERSION "123.0.13+gfc703fb+chromium-123.0.6312.124")  # NOT TEST
 # set(CEF_SDK_VERSION "124.3.9+g9bd638f+chromium-124.0.6367.207")   # NOT TEST
 # set(CEF_SDK_VERSION "125.0.22+gc410c95+chromium-125.0.6422.142")  # NOT TEST
